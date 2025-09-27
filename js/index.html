@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Canggih PWA</title>
+    <meta name="theme-color" content="#2d3748">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-btn">🌙</button>
+                <button id="installBtn" class="install-btn hidden">📲 Install</button>
+            </div>
+            <h1>Kalkulator Canggih</h1>
+            <div class="mode-switcher">
+                <button id="basicMode" class="mode-btn active">Basic</button>
+                <button id="scientificMode" class="mode-btn">Scientific</button>
+                <button id="programmerMode" class="mode-btn">Programmer</button>
+            </div>
+        </header>
+
+        <!-- Display Area -->
+        <div class="display-container">
+            <div class="history-display" id="historyDisplay"></div>
+            <div class="main-display" id="mainDisplay">0</div>
+            <div class="memory-indicator" id="memoryIndicator"></div>
+        </div>
+
+        <!-- Basic Calculator -->
+        <div id="basicCalculator" class="calculator active">
+            <div class="row">
+                <button class="btn memory" data-action="mc">MC</button>
+                <button class="btn memory" data-action="mr">MR</button>
+                <button class="btn memory" data-action="m+">M+</button>
+                <button class="btn memory" data-action="m-">M-</button>
+                <button class="btn memory" data-action="ms">MS</button>
+            </div>
+            <div class="row">
+                <button class="btn clear" data-action="clear">C</button>
+                <button class="btn clear" data-action="clear-entry">CE</button>
+                <button class="btn operator" data-action="backspace">⌫</button>
+                <button class="btn operator" data-action="/">÷</button>
+            </div>
+            <div class="row">
+                <button class="btn number" data-number="7">7</button>
+                <button class="btn number" data-number="8">8</button>
+                <button class="btn number" data-number="9">9</button>
+                <button class="btn operator" data-action="*">×</button>
+            </div>
+            <div class="row">
+                <button class="btn number" data-number="4">4</button>
+                <button class="btn number" data-number="5">5</button>
+                <button class="btn number" data-number="6">6</button>
+                <button class="btn operator" data-action="-">−</button>
+            </div>
+            <div class="row">
+                <button class="btn number" data-number="1">1</button>
+                <button class="btn number" data-number="2">2</button>
+                <button class="btn number" data-number="3">3</button>
+                <button class="btn operator" data-action="+">+</button>
+            </div>
+            <div class="row">
+                <button class="btn number" data-number="0">0</button>
+                <button class="btn number" data-number=".">.</button>
+                <button class="btn operator" data-action="±">±</button>
+                <button class="btn equals" data-action="=">=</button>
+            </div>
+        </div>
+
+        <!-- Scientific Calculator -->
+        <div id="scientificCalculator" class="calculator">
+            <div class="scientific-grid">
+                <button class="btn scientific" data-action="sin">sin</button>
+                <button class="btn scientific" data-action="cos">cos</button>
+                <button class="btn scientific" data-action="tan">tan</button>
+                <button class="btn scientific" data-action="log">log</button>
+                <button class="btn scientific" data-action="ln">ln</button>
+                
+                <button class="btn scientific" data-action="sin⁻¹">sin⁻¹</button>
+                <button class="btn scientific" data-action="cos⁻¹">cos⁻¹</button>
+                <button class="btn scientific" data-action="tan⁻¹">tan⁻¹</button>
+                <button class="btn scientific" data-action="log₁₀">log₁₀</button>
+                <button class="btn scientific" data-action="eˣ">eˣ</button>
+                
+                <button class="btn scientific" data-action="π">π</button>
+                <button class="btn scientific" data-action="e">e</button>
+                <button class="btn scientific" data-action="x²">x²</button>
+                <button class="btn scientific" data-action="x³">x³</button>
+                <button class="btn scientific" data-action="xʸ">xʸ</button>
+                
+                <button class="btn scientific" data-action="√">√</button>
+                <button class="btn scientific" data-action="∛">∛</button>
+                <button class="btn scientific" data-action="10ˣ">10ˣ</button>
+                <button class="btn scientific" data-action="1/x">1/x</button>
+                <button class="btn scientific" data-action="!">x!</button>
+            </div>
+        </div>
+
+        <!-- Programmer Calculator -->
+        <div id="programmerCalculator" class="calculator">
+            <div class="base-selector">
+                <button class="base-btn active" data-base="dec">DEC</button>
+                <button class="base-btn" data-base="hex">HEX</button>
+                <button class="base-btn" data-base="bin">BIN</button>
+                <button class="base-btn" data-base="oct">OCT</button>
+            </div>
+            <div class="programmer-grid">
+                <button class="btn programmer" data-action="and">AND</button>
+                <button class="btn programmer" data-action="or">OR</button>
+                <button class="btn programmer" data-action="xor">XOR</button>
+                <button class="btn programmer" data-action="not">NOT</button>
+                <button class="btn programmer" data-action="mod">MOD</button>
+                
+                <button class="btn programmer" data-action="lsh">Lsh</button>
+                <button class="btn programmer" data-action="rsh">Rsh</button>
+                <button class="btn programmer" data-action="<<"><<</button>
+                <button class="btn programmer" data-action=">>">>></button>
+                <button class="btn programmer" data-action="~">~</button>
+                
+                <button class="btn programmer" data-action="a">A</button>
+                <button class="btn programmer" data-action="b">B</button>
+                <button class="btn programmer" data-action="c">C</button>
+                <button class="btn programmer" data-action="d">D</button>
+                <button class="btn programmer" data-action="e">E</button>
+                <button class="btn programmer" data-action="f">F</button>
+            </div>
+        </div>
+
+        <!-- History Panel -->
+        <div class="history-panel" id="historyPanel">
+            <div class="history-header">
+                <h3>Riwayat Perhitungan</h3>
+                <button id="clearHistory" class="clear-history">Hapus</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="status">
+                <span id="connectionStatus">🟢 Online</span>
+                <span id="memoryStatus">Memori: 0</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
